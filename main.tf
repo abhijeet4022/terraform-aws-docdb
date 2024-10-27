@@ -27,11 +27,13 @@ resource "aws_security_group" "docdb_sg" {
 # Ingress rule for DocDB SG.
 resource "aws_vpc_security_group_ingress_rule" "allow_tls_ipv4" {
   for_each          = toset(var.app_subnets_cidr) # Convert list to a set to iterate over each CIDR
+  description       = "Allow inbound TCP on DocDB port 27017 from App Subnets"
   security_group_id = aws_security_group.docdb_sg.id
   cidr_ipv4         = each.value # Each CIDR block as a separate rule
   from_port         = 27017
   to_port           = 27017
   ip_protocol       = "tcp"
+  tags              = { Name = "App-to-DocDB-27017-${each.value}" }
 }
 
 
