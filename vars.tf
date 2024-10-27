@@ -41,3 +41,11 @@ variable "skip_final_snapshot" {
 variable "engine_version" {
   description = "The version of the DocumentDB engine to use for the cluster, e.g., '3.6' or '4.0'."
 }
+
+variable "master_username" {
+  description = "The username for the master user of the DocumentDB cluster."
+}
+
+variable "master_password" {
+  description = "The password for the master user of the DocumentDB cluster. It must be at least 8 characters long."
+}
