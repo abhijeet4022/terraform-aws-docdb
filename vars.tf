@@ -49,3 +49,12 @@ variable "master_username" {
 variable "master_password" {
   description = "The password for the master user of the DocumentDB cluster. It must be at least 8 characters long."
 }
+
+# DocDB Instance
+variable "instance_count" {
+  description = "The number of DocumentDB instances to create within the cluster."
+}
+
+variable "instance_class" {
+  description = "The instance type to use for DocumentDB instances (e.g., db.r5.large). Defines the compute and memory capacity."
+}

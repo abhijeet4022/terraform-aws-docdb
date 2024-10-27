@@ -60,3 +60,12 @@ resource "aws_docdb_cluster" "docdb" {
   skip_final_snapshot             = var.skip_final_snapshot
   tags                            = merge(local.tags, { Name = "${local.name_prefix}-cluster" })
 }
+
+
+# Create Docdb instance.
+resource "aws_docdb_cluster_instance" "main" {
+  count              = var.instance_count
+  identifier         = "${local.name_prefix}-cluster-instance-${count.index+1}"
+  cluster_identifier = aws_docdb_cluster.docdb.id
+  instance_class     = var.instance_class
+}
