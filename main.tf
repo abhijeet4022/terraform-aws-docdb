@@ -13,6 +13,13 @@ resource "aws_docdb_cluster_parameter_group" "main" {
   description = "${local.name_prefix}-pg"
   tags        = merge(local.tags, { Name = "${local.name_prefix}-pg" })
 
+
+  parameter {
+    name  = "timezone"
+    value = "Asia/Kolkata" # Set the timezone to Kolkata
+  }
+
+
 }
 
 
