@@ -59,13 +59,15 @@ resource "aws_docdb_cluster" "docdb" {
   preferred_backup_window         = var.preferred_backup_window
   skip_final_snapshot             = var.skip_final_snapshot
   tags                            = merge(local.tags, { Name = "${local.name_prefix}-cluster" })
+  storage_encrypted               = true
+  kms_key_id                      = var.kms_key_id
 }
 
 
 # Create Docdb instance.
 resource "aws_docdb_cluster_instance" "main" {
   count              = var.instance_count
-  identifier         = "${local.name_prefix}-cluster-instance-${count.index+1}"
+  identifier         = "${local.name_prefix}-cluster-instance-${count.index + 1}"
   cluster_identifier = aws_docdb_cluster.docdb.id
   instance_class     = var.instance_class
 }

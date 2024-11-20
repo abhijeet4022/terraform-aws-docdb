@@ -58,3 +58,7 @@ variable "instance_count" {
 variable "instance_class" {
   description = "The instance type to use for DocumentDB instances (e.g., db.r5.large). Defines the compute and memory capacity."
 }
+
+variable "kms_key_id" {
+  description = "Provide the KMS KEY ARN"
+}
